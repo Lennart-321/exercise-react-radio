@@ -54,7 +54,7 @@ export default function ChannelList({ info }: { info: any }) {
             lastPageLoadedGlb = lastPageLoaded.current = responseObject.pagination.page;
 
             const justLoadedChannels = responseObject.channels.map(
-                (c: any) => new ChannelInfo(c.id.toString(), c.name)
+                (c: any) => new ChannelInfo(c.id.toString(), c.name, c.liveaudio.url, c.scheduleurl)
             );
             allLoadedChannels = [...channelList, ...justLoadedChannels];
 

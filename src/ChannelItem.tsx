@@ -3,9 +3,13 @@ import { glbInfo } from "./App";
 export class ChannelInfo {
     id;
     name;
-    constructor(id: string, name: string) {
+    liveUrl;
+    scheduleUrl;
+    constructor(id: string, name: string, liveUrl: string, scheduleUrl: string) {
         this.id = id;
         this.name = name;
+        this.liveUrl = liveUrl;
+        this.scheduleUrl = scheduleUrl;
     }
 }
 
