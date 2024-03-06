@@ -35,7 +35,7 @@ export default function ChannelList({ info }: { info: any }) {
 
     async function fetchChannels() {
         try {
-            console.log("Pages (last total):", lastPageLoaded.current, totalPages.current);
+            //console.log("Pages (last total):", lastPageLoaded.current, totalPages.current);
             if (totalPages.current > 0 && lastPageLoaded.current >= totalPages.current) return;
 
             const response = await fetch(
@@ -48,7 +48,7 @@ export default function ChannelList({ info }: { info: any }) {
             // const parser = new DOMParser();
             // const result = parser.parseFromString(xmlText, "text/xml");
             const responseObject = await response.json();
-            console.log("fetched json:", responseObject);
+            //console.log("fetched json:", responseObject);
 
             totalPagesGlb = totalPages.current = responseObject.pagination.totalpages;
             lastPageLoadedGlb = lastPageLoaded.current = responseObject.pagination.page;

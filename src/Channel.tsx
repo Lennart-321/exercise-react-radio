@@ -1,17 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IGlobal } from "./App";
 import { getChannel } from "./ChannelList";
 import { IProgram } from "./Program";
+import ScheduleList from "./ScheduleList";
 
 export default function Channel({ channelId, info }: { channelId: string; info: IGlobal }) {
     const channel = getChannel(channelId);
-    const [programs, setPrograms] = useState<IProgram[]>([]);
 
-    useEffect(() => {
-        if (channel?.scheduleUrl) {
-            loadSchedule();
-        }
-    }, []);
+    const [currentProgram, setCurrentProgram] = useState<IProgram>();
 
     return (
         <>
@@ -27,24 +23,11 @@ export default function Channel({ channelId, info }: { channelId: string; info: 
             </nav>
 
             <p>Kanalsida {channel?.name}</p>
-            <iframe width={400} height={70} src={channel?.liveUrl}></iframe>
-            <section></section>
+            {/* <iframe width={400} height={70} src={channel?.liveUrl}></iframe> */}
+
+            <audio controls src={channel?.liveUrl}></audio>
+            <span>Just nu: {currentProgram?.name}</span>
+            <ScheduleList channelId={channelId} setCurrentProgram={setCurrentProgram} />
         </>
     );
-
-    async function loadSchedule() {
-        const url = channel?.scheduleUrl + `&format=json&date=${new Date().toLocaleDateString("sv-SE")}`;
-        console.log("Load channel schedule:", url);
-        const response = await fetch(url);
-        const result = await response.json();
-        console.log(
-            "Schedule loaded:",
-            //result,
-            result.schedule[0],
-            result.schedule[0].starttimeutc,
-            typeof result.schedule[0].starttimeutc,
-            Date.parse(result.schedule[0].starttimeutc)
-        );
-        //result.schedule.map();
-    }
 }
