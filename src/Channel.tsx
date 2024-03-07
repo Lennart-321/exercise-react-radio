@@ -11,18 +11,7 @@ export default function Channel({ channelId, info }: { channelId: string; info: 
 
     return (
         <>
-            <nav>
-                <a
-                    onClick={() => {
-                        info.page = "CHANNEL-LIST";
-                        info.reload(pc => pc + 1);
-                    }}
-                >
-                    Kanallista
-                </a>
-            </nav>
-
-            <p>Kanalsida {channel?.name}</p>
+            <h2>Kanalsida {channel?.name}</h2>
             {/* <iframe width={400} height={70} src={channel?.liveUrl}></iframe> */}
 
             <audio controls src={channel?.liveUrl}></audio>

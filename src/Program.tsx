@@ -30,6 +30,7 @@ export default function Program({ program, isPlaying }: { program: IProgram; isP
                 setShowDetails(sd => !sd);
             }}
             style={isPlaying ? { fontWeight: "bold" } : { fontWeight: "normal" }}
+            className="list-item"
         >
             {toString2(Math.floor(program.start / 60))}.{toString2(program.start % 60)} {program.name}
             {showDetails && details && (

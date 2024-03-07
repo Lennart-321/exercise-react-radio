@@ -26,7 +26,7 @@ export default function ScheduleList({
     let untilEnd = -1;
     const jsxResult = (
         <>
-            <section>
+            <section className="list">
                 {programs.map(p => {
                     const isPlaying = p.start <= nowMinute && nowMinute < p.end;
                     if (isPlaying) {
@@ -77,10 +77,15 @@ export default function ScheduleList({
     }
 }
 
-function srDateToMinutes(dateStr: string) {
-    const numStr = dateStr.replaceAll(/\D+/g, "");
+export function srDate(srDateStr: string): Date {
+    const numStr = srDateStr.replaceAll(/\D+/g, "");
     const date = new Date(Number(numStr));
+    return date;
+}
+
+function srDateToMinutes(dateStr: string) {
+    const date = srDate(dateStr);
     const minutes = date.getHours() * 60 + date.getMinutes();
-    console.log(dateStr, numStr, date, minutes);
+    console.log(dateStr, date, minutes);
     return minutes;
 }

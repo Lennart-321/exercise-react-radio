@@ -24,6 +24,7 @@ export default function ChannelItem({ channelInfo }: { channelInfo: ChannelInfo 
                 glbInfo.page = "CHANNEL";
                 glbInfo.reload(pc => pc + 1);
             }}
+            className="list-item channel-list-item"
         >
             {channelInfo.name}
         </p>
